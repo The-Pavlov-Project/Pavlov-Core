@@ -21,5 +21,7 @@ urlpatterns = [
     
     # api endpoints
     path('api/auth/', include('PVAuth.api.v1.urls')),
+    path('api/bot/', include('PVBot.api.v1.urls')),
+    path('api/commands/', include('PVCommand.api.v1.urls')),
     path('api/user/', include('PVUser.api.v1.urls')),
 ]
