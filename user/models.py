@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-
+    """Base user model, used to store all user personal informations"""
     email = models.EmailField(unique=True)
     is_verified = models.BooleanField(default=False)
 
@@ -20,3 +20,17 @@ class User(AbstractUser):
 
     def __str__(self):
         return f'{self.username}'
+
+
+class Creator(models.Model):
+    """
+        Represent the creator of the content,
+        this will contain all the settings to the public creator; url and other stuff will be assigned
+        like personal data, lore, info, social networks, etc.
+    """
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    moderators = models.ManyToManyField(User, related_name='moderators')
+
+    def __str__(self):
+        return self.owner.email

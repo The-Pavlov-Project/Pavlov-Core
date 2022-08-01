@@ -33,10 +33,10 @@ AUTH_USER_MODEL = 'PVUser.User'
 # Application definition
 INSTALLED_APPS = [
     # apps
-    'PVAuth',
-    'PVBot',
-    'PVCommand',
-    'PVUser',
+    'access',
+    'bot',
+    'command',
+    'user',
 
     # core
     'django.contrib.admin',
