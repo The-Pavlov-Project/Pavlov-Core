@@ -5,10 +5,13 @@ from .serializers import EventSerializer
 
 
 class EventViewSet(ModelViewSet):
+    """Get user calendar"""
     serializer_class = EventSerializer
     queryset = Event.objects.none()
-    """Get user calendar"""
 
     def get_queryset(self):
         user = self.request.user
-        return Event.objects.filter(user=user)
+        if user.is_authenticated:
+            return Event.objects.filter(user=user)
+        else:
+            return self.queryset

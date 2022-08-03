@@ -2,7 +2,7 @@ from rest_framework.serializers import (
     ModelSerializer,
 )
 from bot.models import BotSettings
-from PVUser.api.v1.serializers import UserSerializer
+from user.api.v1.serializers import UserSerializer
 
 
 class BotSettingsSerializer(ModelSerializer):

@@ -7,7 +7,12 @@ User = get_user_model()
 class Platforms(models.TextChoices):
     ALL = 'A', 'All'
     TELEGRAM = 'T', 'Telegram'
+    TWITCH = 'T', 'Telegram'
     DISCORD = 'D', 'Discord'
+
+
+class TwitchToken(models.Model):
+    key = models.CharField(max_length=100)
 
 
 class BotSettings(models.Model):
@@ -17,5 +22,5 @@ class BotSettings(models.Model):
     """
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     name = models.CharField(max_length=30)
-    platform = models.CharField(choices=Platforms.choices, max_length=15)
+    platform = models.CharField(choices=Platforms.choices, default=None, max_length=15)
     key = models.CharField(max_length=100)

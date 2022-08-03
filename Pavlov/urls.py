@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/auth/', include('access.api.v1.urls')),
     path('api/bot/', include('bot.api.v1.urls')),
     path('api/commands/', include('command.api.v1.urls')),
-    path('api/user/', include('PVUser.api.v1.urls')),
+    path('api/schedule/', include('schedule.api.v1.urls')),
+    path('api/user/', include('user.api.v1.urls')),
 ]

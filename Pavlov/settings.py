@@ -28,17 +28,10 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Custom User Model
-AUTH_USER_MODEL = 'PVUser.User'
+AUTH_USER_MODEL = 'user.User'
 
-# Application definition
-INSTALLED_APPS = [
-    # apps
-    'access',
-    'bot',
-    'command',
-    'user',
 
-    # core
+BASE_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +41,16 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken'
-]
+)
+
+# Application definition
+INSTALLED_APPS = BASE_APPS + (
+    'access',
+    'bot',
+    'command',
+    'schedule',
+    'user',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
