@@ -22,15 +22,10 @@ class User(AbstractUser):
         return f'{self.username}'
 
 
-class Creator(models.Model):
-    """
-        Represent the creator of the content,
-        this will contain all the settings to the public creator; url and other stuff will be assigned
-        like personal data, lore, info, social networks, etc.
-    """
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    moderators = models.ManyToManyField(User, related_name='moderators')
+class DiscordAccount(models.Model):
+    """This is the user on the discord platform, it will be used to link the user to the platform"""
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    discord_id = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.owner.email
+        return f'{self.discord_id}'

@@ -48,6 +48,7 @@ INSTALLED_APPS = BASE_APPS + (
     'access',
     'bot',
     'command',
+    'organization',
     'schedule',
     'user',
 )
@@ -153,3 +154,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+URI_DISCORD_BOT_API = 'http://localhost:3000'

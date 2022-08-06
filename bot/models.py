@@ -7,7 +7,7 @@ User = get_user_model()
 class Platforms(models.TextChoices):
     ALL = 'A', 'All'
     TELEGRAM = 'T', 'Telegram'
-    TWITCH = 'T', 'Telegram'
+    TWITCH = 'TW', 'Twitch'
     DISCORD = 'D', 'Discord'
 
 
