@@ -28,7 +28,7 @@ class Event(Metadata):
     description = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    is_private = models.BooleanField()
+    private = models.BooleanField()
 
     @property
     def get_html_url(self):
