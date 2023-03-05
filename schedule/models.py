@@ -40,7 +40,7 @@ class EventDiscord(models.Model):
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, null=True, blank=True)
     is_published = models.BooleanField(default=False, help_text='If the event has been sent to discord')
 
-    event_id = models.CharField(max_length=200)
+    # event_id = models.CharField(max_length=200)
     channel_id = models.CharField(max_length=200, null=True, blank=True)
     creator_id = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
@@ -49,11 +49,11 @@ class EventDiscord(models.Model):
         requests.post(
             f'{settings.URI_DISCORD_BOT_API}/api/event/create',
             data={
-                'event_id': self.event_id
+                # 'event_id': self.event_id
             }
         )
         self.is_published = True
         self.save()
 
     def __str__(self):
-        return self.discord_id
+        return self.event_id
