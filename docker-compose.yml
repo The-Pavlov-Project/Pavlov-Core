@@ -1,0 +1,12 @@
+version: "3"
+services:
+
+  core:
+    container_name: core
+    image: pavlov-core:latest
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=false

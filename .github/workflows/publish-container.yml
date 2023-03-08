@@ -1,0 +1,39 @@
+name: Build and Publish Image
+
+on:
+  create:
+    tags:
+      - '*'
+
+env:
+  IMAGE_NAME: pavlov-core
+  IMAGE_TAG: latest
+  DOCKERFILE_PATH: Dockerfile
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  GITHUB_TAG: ${{ env.GITHUB_REF/refs/tags/ }}
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print tag name
+        run: echo "The tag name is ${{ env.GITHUB_TAG }}"
+        shell: bash
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME:$IMAGE_TAG -f $DOCKERFILE_PATH .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Push Docker image
+        run: |
+          docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_TAG
+          docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:$IMAGE_TAG
